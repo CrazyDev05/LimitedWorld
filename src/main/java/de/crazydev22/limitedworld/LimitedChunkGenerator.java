@@ -4,10 +4,14 @@ import com.volmit.iris.engine.framework.Engine;
 import com.volmit.iris.engine.platform.BukkitChunkGenerator;
 import com.volmit.iris.engine.platform.PlatformChunkGenerator;
 import lombok.AllArgsConstructor;
+import org.bukkit.HeightMap;
 import org.bukkit.World;
+import org.bukkit.generator.BiomeProvider;
+import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -56,5 +60,55 @@ public class LimitedChunkGenerator extends ChunkGenerator implements PlatformChu
     @Override
     public void hotload() {
         delegate.hotload();
+    }
+
+    @Override
+    public int getBaseHeight(WorldInfo worldInfo, Random random, int x, int z, HeightMap heightMap) {
+        return 4;
+    }
+
+    @Override
+    public List<BlockPopulator> getDefaultPopulators(World world) {
+        return delegate.getPopulators();
+    }
+
+    @Override
+    public boolean shouldGenerateCaves() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldGenerateDecorations() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldGenerateMobs() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldGenerateStructures() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldGenerateNoise() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldGenerateSurface() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldGenerateBedrock() {
+        return false;
+    }
+
+    @Override
+    public BiomeProvider getDefaultBiomeProvider(WorldInfo worldInfo) {
+        return delegate.getDefaultBiomeProvider(worldInfo);
     }
 }
