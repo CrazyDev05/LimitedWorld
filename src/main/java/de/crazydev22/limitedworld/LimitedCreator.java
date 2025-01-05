@@ -82,6 +82,7 @@ public class LimitedCreator {
                 .dimension(dimension)
                 .name(name)
                 .seed(seed)
+                .chunkLimiter(chunkLimiter)
                 .create();
 
         var access = (LimitedChunkGenerator) wc.generator();
